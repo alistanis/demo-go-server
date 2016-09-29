@@ -14,6 +14,11 @@ func main() {
 		rw.Write([]byte("Hello!"))
 	})
 
+	mux.HandleFunc("/mark", func(rw http.ResponseWriter, r *http.Request) {
+		rw.WriteHeader(200)
+		rw.Write([]byte("Hello Mark!"))
+	})
+
 	err := http.ListenAndServe(":8080", mux)
 	if err != nil {
 		fmt.Println(err)
