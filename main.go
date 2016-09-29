@@ -1,7 +1,9 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
+	"os"
 )
 
 func main() {
@@ -12,5 +14,9 @@ func main() {
 		rw.Write([]byte("Hello!"))
 	})
 
-	http.ListenAndServe("8080", mux)
+	err := http.ListenAndServe(":8080", mux)
+	if err != nil {
+		fmt.Println(err)
+		os.Exit(-1)
+	}
 }
